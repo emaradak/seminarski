@@ -26,7 +26,7 @@ const Login = () => {
             password: password
         }
         ).then(res => {
-            alert("Dobro je ");
+            alert("Uspesno ste se ulogovali");
             console.log(res);
             console.log(res.data);
 
@@ -41,8 +41,11 @@ const Login = () => {
             window.location.href = "/pocetna";
         }
         ).catch(err => {
-            alert("Nije dobro");
-            console.log(err);
+            setPoruka({
+                tekstPoruke: "Korisnik sa datim emailom i lozinkom ne postoji",
+                uspesno: false,
+                prikazati: true
+            });
         }
         );
     }
@@ -58,7 +61,6 @@ const Login = () => {
             password: password
         }
         ).then(res => {
-            alert("Dobro je ");
             console.log(res);
             console.log(res.data);
 
@@ -87,7 +89,7 @@ const Login = () => {
                     {
                         poruka.prikazati ?
                             (
-                                <h1 className={poruka.uspesno ? 'text-success' : 'text-danger'}>{poruka.tekstPoruke}</h1>
+                                <h1 className={poruka.uspesno ? 'text-success text-center' : 'text-danger text-center'}>{poruka.tekstPoruke}</h1>
                             ) : (<> </>)
                     }
                     <Col>

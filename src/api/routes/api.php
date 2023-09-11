@@ -25,4 +25,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('timovi', 'App\Http\Controllers\TimController');
     Route::apiResource('nivoi', 'App\Http\Controllers\NivoController');
     Route::apiResource('radnici', 'App\Http\Controllers\RadnikController');
+    Route::get('radniciPoTimu', 'App\Http\Controllers\RadnikController@radniciPoTimu');
 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\RadnikResurs;
 use App\Models\Radnik;
+use App\Models\Tim;
 use Illuminate\Http\Request;
 
 class RadnikController extends Controller
@@ -51,6 +52,21 @@ class RadnikController extends Controller
         $radnik->delete();
 
         return response()->json('Radnik obrisan.');
+    }
+
+    public function radniciPoTimu(){
+        $radnici = Radnik::all();
+        $radniciPoTimu = [];
+        foreach($radnici as $radnik){
+            $nazivTima = Tim::find($radnik->tim_id)->naziv_tima;
+            if(!array_key_exists($nazivTima, $radniciPoTimu)){
+                $radniciPoTimu[$nazivTima] = 1;
+            }else {
+                $radniciPoTimu[$nazivTima]++;
+            }
+
+        }
+        return $radniciPoTimu;
     }
 
 }
