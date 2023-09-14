@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserResurs;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class UserController extends Controller
         if (auth()->attempt($credentials)) {
             $user = auth()->user();
             $token = $user->createToken('authToken')->plainTextToken;
-            return response()->json(['user' => $user, 'token' => $token], 200);
+            return response()->json(['user' => new UserResurs($user), 'token' => $token], 200);
         } else {
             return response()->json(['error' => 'Kredencijali nisu dobri'], 401);
         }

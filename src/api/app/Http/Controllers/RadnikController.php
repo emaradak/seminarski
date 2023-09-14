@@ -24,7 +24,6 @@ class RadnikController extends Controller
         $request->validate([
             'ime' => 'required',
             'prezime' => 'required',
-            'datum_rodjenja' => 'required',
             'broj_telefona' => 'required',
             'adresa' => 'required',
             'nivo_id' => 'required',

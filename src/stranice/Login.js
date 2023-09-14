@@ -38,6 +38,7 @@ const Login = () => {
 
             window.sessionStorage.setItem("auth_token", token);
             window.sessionStorage.setItem("user", JSON.stringify(user));
+            window.sessionStorage.setItem('admin', user.is_admin);
             window.location.href = "/pocetna";
         }
         ).catch(err => {

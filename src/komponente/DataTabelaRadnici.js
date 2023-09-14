@@ -58,7 +58,7 @@ const DataTabelaRadnici = props => {
 };
 
 DataTabelaRadnici.propTypes = {
-    radnici: PropTypes.array.isRequired
+    radnici: PropTypes.array.isRequired,
 };
 
 export default DataTabelaRadnici;

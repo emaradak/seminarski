@@ -22,7 +22,6 @@ class RadnikSeeder extends Seeder
                     'prezime' => $faker->lastName,
                     'tim_id' => $faker->numberBetween(1, 7),
                     'nivo_id' => $faker->numberBetween(1, 10),
-                    'datum_rodjenja' => $faker->date(),
                     'adresa' => $faker->address,
                     'broj_telefona' => $faker->phoneNumber,
                 ]

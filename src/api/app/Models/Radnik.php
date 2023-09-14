@@ -16,7 +16,6 @@ class Radnik extends Model
         'prezime',
         'tim_id',
         'nivo_id',
-        'datum_rodjenja',
         'adresa',
         'broj_telefona',
     ];
