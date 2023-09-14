@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {Col, Container, Row} from "react-bootstrap";
 import DataTabelaRadnici from "../komponente/DataTabelaRadnici";
 import TimskaKartica from "../komponente/TimskaKartica";
+import {Chart} from "react-google-charts";
 
 const Pocetna = props => {
 
@@ -12,6 +13,7 @@ const Pocetna = props => {
     const [nivoi, setNivoi] = useState([]);
     const [radnici, setRadnici] = useState([]);
     const [radniciPoTimu, setRadniciPoTimu] = useState([]);
+    const [chartData, setChartData] = useState([]);
     const [dodajRadnikaForma, setDodajRadnikaForma] = useState({
         ime: "",
         prezime: "",
@@ -138,16 +140,20 @@ const Pocetna = props => {
                 let value;
                 let brojac = 1;
 
+                let chartPodaci = [['Tim', 'Broj radnika']];
+
                 for ([key, value] of radniciPoTimuArray){
                     radniciPoTimu.push({
                         id : brojac,
                         tim: key,
                         broj: value
-                    })
+                    });
+                    chartPodaci.push([key, value]);
                     brojac++;
                 }
 
                 setRadniciPoTimu(radniciPoTimu);
+                setChartData(chartPodaci);
             })
             .catch(error => {
                 console.log(error);
@@ -272,6 +278,28 @@ const Pocetna = props => {
                                     </Col>
 
 
+                                </Row>
+                                <Row>
+                                    <Col>
+                                        <Chart
+                                            chartType="PieChart"
+                                            width="100%"
+                                            height="600px"
+                                            data={chartData}
+                                            options={
+                                                {
+                                                    title: 'Broj radnika po timu',
+                                                    legend: "none",
+                                                    pieSliceText: "label",
+                                                    slices: {
+                                                        3: { offset: 0.2 },
+                                                        4: { offset: 0.3 },
+                                                        0: { offset: 0.5 },
+                                                    },
+                                                }
+                                            }
+                                        />
+                                    </Col>
                                 </Row>
                             </>
                         )

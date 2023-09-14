@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+footer {
+  min-height: 100px;
+  margin: auto;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+}
+
+footer span {
+    display: block;
+    padding-top: 40px;
+    margin: auto;
+}

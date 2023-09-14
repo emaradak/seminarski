@@ -6,6 +6,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Pocetna from "./stranice/Pocetna";
 import Onama from "./stranice/Onama";
 import Kontakt from "./stranice/Kontakt";
+import Footer from "./komponente/Footer";
 
 function App() {
   return (
@@ -18,7 +19,9 @@ function App() {
                <Route path="/onama" element={<Onama />} />
                <Route path="/kontakt" element={<Kontakt />} />
            </Routes>
+           <Footer />
        </BrowserRouter>
+
    </>
   );
 }
