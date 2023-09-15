@@ -27,3 +27,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('radnici', 'App\Http\Controllers\RadnikController');
     Route::get('radniciPoTimu', 'App\Http\Controllers\RadnikController@radniciPoTimu');
 });
+
+Route::get('qod', 'App\Http\Controllers\RadnikController@qod');

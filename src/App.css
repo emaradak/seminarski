@@ -50,3 +50,13 @@ footer span {
     padding-top: 40px;
     margin: auto;
 }
+
+footer p {
+  display: block;
+  margin: auto;
+}
+
+.login {
+  min-height: 650px;
+  margin: auto;
+}

@@ -68,4 +68,14 @@ class RadnikController extends Controller
         return $radniciPoTimu;
     }
 
+    public function qod(){
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, "https://evilinsult.com/generate_insult.php?lang=en&type=json");
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        $output = curl_exec($curl);
+        curl_close($curl);
+
+        echo $output;
+    }
+
 }

@@ -86,7 +86,7 @@ const Login = () => {
     return (
         <>
             <Container>
-                <Row>
+                <Row className="login">
                     {
                         poruka.prikazati ?
                             (

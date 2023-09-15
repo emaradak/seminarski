@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import axios from '../axios/axiosInstanca';
 import PropTypes from 'prop-types';
 import {Col, Container, Row} from "react-bootstrap";
@@ -9,9 +9,11 @@ import {Chart} from "react-google-charts";
 const Pocetna = props => {
 
     const token = window.sessionStorage.getItem("auth_token");
+    const refPretraga = useRef();
     const [timovi, setTimovi] = useState([]);
     const [nivoi, setNivoi] = useState([]);
     const [radnici, setRadnici] = useState([]);
+    const [filtriraniRadnici, setFiltriraniRadnici] = useState([]);
     const [radniciPoTimu, setRadniciPoTimu] = useState([]);
     const [chartData, setChartData] = useState([]);
     const [dodajRadnikaForma, setDodajRadnikaForma] = useState({
@@ -201,6 +203,18 @@ const Pocetna = props => {
             });
     }
 
+    const pretrazi = () => {
+        const pretraga = refPretraga.current.value;
+        const filtrirani = radnici.filter(radnik => {
+            return pretraga === '' || radnik.ime.toLowerCase().includes(pretraga.toLowerCase()) || radnik.prezime.toLowerCase().includes(pretraga.toLowerCase());
+        });
+        setFiltriraniRadnici(filtrirani);
+    }
+
+    useEffect(() => {
+        pretrazi();
+    })
+
 
     return (
         <div>
@@ -217,7 +231,10 @@ const Pocetna = props => {
                 <Row>
                     <Col>
                         <h1 className="text-center">Svi nasi radnici</h1>
-                        <DataTabelaRadnici  radnici={radnici}/>
+                        <label htmlFor="pretraga">Pretrazi po imenu ili prezimenu</label>
+                        <input ref={refPretraga} onChange={pretrazi} className="form-control" type="text" id="pretraga" name="pretraga" />
+                        <hr/>
+                        <DataTabelaRadnici  radnici={filtriraniRadnici}/>
                     </Col>
                 </Row>
 
