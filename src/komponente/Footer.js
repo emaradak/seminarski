@@ -18,6 +18,7 @@ const Footer = () => {
             console.log("Poruka nije prazna");
         }
     }
+
     generisiPoruku();
 
     return (

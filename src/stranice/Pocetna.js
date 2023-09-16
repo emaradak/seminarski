@@ -47,6 +47,7 @@ const Pocetna = props => {
 
     const dodajRadnika = () => {
         console.log(dodajRadnikaForma);
+        console.log('Pozvan dodajRadnika');
 
         axios({
             method: 'post',
@@ -66,6 +67,7 @@ const Pocetna = props => {
 
     const izmeniRadnika = () => {
         console.log(izmenaRadnikaForma);
+        console.log('Pozvan izmena radnika');
 
         axios({
             method: 'put',
@@ -84,6 +86,7 @@ const Pocetna = props => {
     }
 
     const ucitajTimove = () => {
+        console.log('Pozvan timovi');
 
         axios.get('timovi', {
             headers: {
@@ -99,6 +102,7 @@ const Pocetna = props => {
     }
 
     const ucitajNivoe = () => {
+        console.log('Pozvan nivoi');
 
             axios.get('nivoi', {
                 headers: {
@@ -122,6 +126,7 @@ const Pocetna = props => {
                 })
                 .then(response => {
                     setRadnici(response.data.data);
+                    setFiltriraniRadnici(response.data.data);
                 })
                 .catch(error => {
                     console.log(error);
@@ -129,6 +134,7 @@ const Pocetna = props => {
     }
 
     const vratiRadnikePoTimu = () => {
+        console.log('Pozvan radnici po timu');
         axios.get('radniciPoTimu', {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -187,6 +193,7 @@ const Pocetna = props => {
     })
 
     function obrisiRadnika() {
+        console.log('Pozvan brisanje radnika');
         axios.delete(`radnici/${izmenaRadnikaForma.radnik}`, {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -211,9 +218,6 @@ const Pocetna = props => {
         setFiltriraniRadnici(filtrirani);
     }
 
-    useEffect(() => {
-        pretrazi();
-    })
 
 
     return (
@@ -232,7 +236,8 @@ const Pocetna = props => {
                     <Col>
                         <h1 className="text-center">Svi nasi radnici</h1>
                         <label htmlFor="pretraga">Pretrazi po imenu ili prezimenu</label>
-                        <input ref={refPretraga} onChange={pretrazi} className="form-control" type="text" id="pretraga" name="pretraga" />
+                        <input ref={refPretraga} className="form-control" type="text" id="pretraga" name="pretraga" />
+                        <button onClick={pretrazi} className="btn btn-primary mt-3">Pretrazi</button>
                         <hr/>
                         <DataTabelaRadnici  radnici={filtriraniRadnici}/>
                     </Col>

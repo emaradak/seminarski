@@ -20,6 +20,7 @@ const Login = () => {
     const login = () => {
         const email = loginEmail.current.value;
         const password = loginPassword.current.value;
+        console.log('Pozvan login');
 
         axiosInstanca.post('login', {
             email: email,
@@ -55,6 +56,7 @@ const Login = () => {
         const name = registerName.current.value;
         const email = registerEmail.current.value;
         const password = registerPassword.current.value;
+        console.log('Pozvan register');
 
         axiosInstanca.post('register', {
             name: name,
